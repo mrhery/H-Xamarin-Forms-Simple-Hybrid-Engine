@@ -1,0 +1,102 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.esm.js" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.esm.min.js" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.js" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.js.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <None Remove="WWW\assets\vendor\bootstrap\js\bootstrapmin.js" />
+    <None Remove="WWW\assets\vendor\fontawesome\css\fontawesome.css.map" />
+    <None Remove="WWW\assets\vendor\fontawesome\fonts\FontAwesome.otf" />
+    <None Remove="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.eot" />
+    <None Remove="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.svg" />
+    <None Remove="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.ttf" />
+    <None Remove="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.woff" />
+    <None Remove="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.woff2" />
+    <None Remove="WWW\assets\vendor\jquery.js" />
+    <None Remove="WWW\assets\vendor\poppermin.js" />
+    <None Remove="WWW\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-grid.rtl.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-grid.rtl.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-reboot.rtl.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap-utilities.rtl.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap.rtl.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\css\bootstrap.rtl.min.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.esm.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.esm.js.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.esm.min.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.esm.min.js.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.js.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrapmin.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\bootstrap\js\bootstrap.min.js.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\css\fontawesome.css.map" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.eot" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.svg" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.ttf" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.woff" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\fonts\fontawesomewebfont.woff2" />
+    <EmbeddedResource Include="WWW\assets\vendor\fontawesome\fonts\FontAwesome.otf" />
+    <EmbeddedResource Include="WWW\assets\vendor\jquery.js" />
+    <EmbeddedResource Include="WWW\assets\vendor\poppermin.js" />
+    <EmbeddedResource Include="WWW\index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.0-beta" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+  </ItemGroup>
+</Project>
