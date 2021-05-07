@@ -12,6 +12,7 @@ namespace HXFSimpleHybrid.Droid
 {
     public class HAWebView : WebViewRenderer
     {
+        const string JavascriptFunction = @"function HXFInvoke(data){jsBridge.invokeAction(data);}";
         private WebNavigationEvent _lastNavigationEvent;
         private WebViewSource _lastSource;
         private string _lastUrl;
@@ -25,25 +26,35 @@ namespace HXFSimpleHybrid.Droid
         {
             base.OnElementChanged(e);
 
-            Control.Settings.JavaScriptEnabled = true;
-            Control.ClearCache(true);
-            Control.Settings.SetAppCacheEnabled(true);
-            var x = new MyWebClient(mContext);
+            if(e.OldElement != null)
+            {
+                Control.RemoveJavascriptInterface("jsBridge");
+                ((HWebView)Element).Cleanup();
+            }
 
-            Control.Settings.MediaPlaybackRequiresUserGesture = false;
-            Control.Settings.UserAgentString = "Android";
-            Control.SetWebChromeClient(x);
+            if(e.NewElement != null)
+            {
+                Control.Settings.JavaScriptEnabled = true;
+                Control.ClearCache(true);
+                Control.Settings.SetAppCacheEnabled(true);
 
-            //if(Build.VERSION.SdkInt >= BuildVersionCodes.Kitkat)
-            //{
-            //    Control.EvaluateJavascript("setTimeout(() => { fetch_lang('en') }, 3000)", null);
-            //}
-            //else
-            //{
-            //    Control.LoadUrl("javascript:setTimeout(() => { fetch_lang('en') }, 3000)");
-            //}
+                var x = new MC(mContext, JavascriptFunction);
+                
+                Control.SetWebChromeClient(x);
+                Control.Settings.MediaPlaybackRequiresUserGesture = false;
+                Control.Settings.UserAgentString = "Android";
+                Control.AddJavascriptInterface(new JSBridge(this), "jsBridge");
+            }
+        }
 
-            //Control.Settings.UserAgentString = "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.4) Gecko/20100101 Firefox/4.0";
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ((HWebView)Element).Cleanup();
+            }
+
+            base.Dispose(disposing);
         }
 
         private void HandleElementNavigating(object sender, WebNavigatingEventArgs e)
@@ -53,13 +64,45 @@ namespace HXFSimpleHybrid.Droid
             _lastUrl = e.Url;
         }
 
-        public class MyWebClient : WebChromeClient
+        public class MyWebClient : FormsWebViewClient
         {
             Activity mContext;
-            public MyWebClient(Activity context)
+            string _javascript;
+            public MyWebClient(HAWebView wb, string js) : base(wb)
             {
-                this.mContext = context;
+                //this.mContext = context;
+                _javascript = js;
 
+            }
+
+            public override void OnPageFinished(Android.Webkit.WebView view, string url)
+            {
+                base.OnPageFinished(view, url);
+                view.EvaluateJavascript(_javascript, null);
+            }
+
+            
+        }
+
+        public class MC : WebChromeClient
+        {
+            Activity m;
+            string js;
+
+            public MC(Activity _m, string _js)
+            {
+                m = _m;
+                js = _js;
+            }
+
+            public override void OnProgressChanged(Android.Webkit.WebView view, int newProgress)
+            {
+                base.OnProgressChanged(view, newProgress);
+
+                if(newProgress == 100)
+                {
+                    view.EvaluateJavascript(js, null);
+                }
             }
 
             [TargetApi(Value = 21)]

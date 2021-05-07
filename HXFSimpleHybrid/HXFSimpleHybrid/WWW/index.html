@@ -27,6 +27,11 @@
                         <button class="btn btn-sm btn-block btn-primary" id="start">
                             <span class="fa fa-play"></span> Start
                         </button>
+
+
+                        <button class="btn btn-sm btn-block btn-primary" id="reload">
+                            <span class="fa fa-refresh"></span> Start
+                        </button>
                     </div>
                 </div>
             </div>
@@ -34,12 +39,30 @@
     </div>
 
 <script>
-    $("#start").on("click", function () {
+    HXFInvoke("permission:camera");
+    HXFInvoke("permission:microphone");
 
+    $("#start").on("click", function () {
+        enableCamera();
+    });
+
+    function enableCamera() {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(function (str) {
+            enableAudio();
+        }).catch(function (er) {
+            HXFInvoke("permission:camera");
+            enableCamera();
+        });
+    }
+
+    function enableAudio() {
         navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (str) {
             $("#my").prop("srcObject", str);
+        }).catch(function (er) {
+            HXFInvoke("permission:microphone");
+            enableAudio();
         });
-    });
+    }
 </script>
 </body>
 </html> 

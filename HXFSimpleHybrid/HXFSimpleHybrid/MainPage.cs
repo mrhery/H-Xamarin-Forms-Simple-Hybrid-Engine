@@ -20,22 +20,51 @@ namespace HXFSimpleHybrid
                 IsVisible = true
             };
 
-            var status = CheckAndRequestPermissionAsync(new Permissions.Camera());
-            if (status.Result != PermissionStatus.Granted)
-            {
-                DisplayAlert("Permission Error", "Requested Camera not alloed.", "Ok");
-            }
-
-            var mstatus = CheckAndRequestPermissionAsync(new Permissions.Microphone());
-            if (mstatus.Result != PermissionStatus.Granted)
-            {
-                DisplayAlert("Permission Error", "Requested Camera not alloed.", "Ok");
-            }
+            wb.Invoking(data => {
+                Invoke(data);
+            });
 
             Content = wb;
         }
 
+        void Invoke(string data)
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var ds = data.Split(new char[] { ':' });
 
+                if (ds.Length > 1)
+                {
+                    switch (ds[0])
+                    {
+                        case "permission":
+                            switch (ds[1])
+                            {
+                                case "camera":
+                                    var x = Permissions.CheckStatusAsync<Permissions.Camera>();
+
+                                    if (x.Result != PermissionStatus.Granted)
+                                    {
+                                        x = Permissions.RequestAsync<Permissions.Camera>();
+                                    }
+                                    break;
+
+                                case "microphone":
+                                    var x1 = Permissions.CheckStatusAsync<Permissions.Microphone>();
+
+                                    if (x1.Result != PermissionStatus.Granted)
+                                    {
+                                        x1 = Permissions.RequestAsync<Permissions.Microphone>();
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            });
+
+            return;
+        }
 
         protected override void OnAppearing()
         {
@@ -58,18 +87,6 @@ namespace HXFSimpleHybrid
                     }
                 }
             });
-        }
-
-        public async Task<PermissionStatus> CheckAndRequestPermissionAsync<T>(T permission)
-            where T : Permissions.BasePermission
-        {
-            var status = await permission.CheckStatusAsync();
-            if (status != PermissionStatus.Granted)
-            {
-                status = await permission.RequestAsync();
-            }
-
-            return status;
         }
     }
 }
