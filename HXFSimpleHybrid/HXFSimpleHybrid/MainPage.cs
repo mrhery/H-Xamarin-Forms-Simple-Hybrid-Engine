@@ -10,24 +10,32 @@ namespace HXFSimpleHybrid
 {
     public class MainPage : ContentPage
     {
-        WebView wb;
+        HWebView wb;
         ActivityIndicator ai;
         public MainPage()
         {
-            wb = new WebView
+            wb = new HWebView
             {
                 //Source = "http://127.0.0.1:"+ Config.port + @"/",
                 IsVisible = true
             };
 
-            var status = CheckAndRequestPermissionAsync(new Permissions.LocationWhenInUse());
+            var status = CheckAndRequestPermissionAsync(new Permissions.Camera());
             if (status.Result != PermissionStatus.Granted)
+            {
+                DisplayAlert("Permission Error", "Requested Camera not alloed.", "Ok");
+            }
+
+            var mstatus = CheckAndRequestPermissionAsync(new Permissions.Microphone());
+            if (mstatus.Result != PermissionStatus.Granted)
             {
                 DisplayAlert("Permission Error", "Requested Camera not alloed.", "Ok");
             }
 
             Content = wb;
         }
+
+
 
         protected override void OnAppearing()
         {
