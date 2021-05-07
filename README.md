@@ -7,7 +7,7 @@
  I made a few test on Cordova, simply extracting the `.apk` file, I can access the `www` folder with the whole assets includes other files like local certificates and others. So I think, why not put the `www` folder inside a renderer project like Xamarin.Forms, so here it is, XFHybrid. I tried run few test (this XFHybrid), the app quite big and a bit slow on start up, but I tried to reverse engineer the app, and I can't find the `www`. Why? Because the `www` is treated as Embedded Recource which is it already inside the compiled code.
  
  # The Cons
-As all Xamarin developer knows that Xamarin.Form is slow on startup and the `apk` file generate is like 3 times bigger than normal. I ran this empty project with bootstrap css, jquery, popper and single html file, it reaches 40mb! And it took around 5-10 second to startup. 
+All Xamarin developer knows that Xamarin.Form is slow on startup and the `apk` file generate is like 3 times bigger than normal. I ran this empty project with bootstrap css, jquery, popper and single html file, it reaches 40mb! And it took around 5-10 second to startup. 
 
 # What inside it?
 Inside the `Solution Explorer`, there you will see the the Xamarin.Forms project named `HXFSimpleHybrid` and inside it you will find several folders as below:
