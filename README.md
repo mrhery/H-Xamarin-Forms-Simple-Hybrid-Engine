@@ -25,8 +25,9 @@ Simple, just clone this project, and open it on visual studio. Make sure you hav
 
 1. Please all your code or start develop you HTML / JS / CSS application inside the `WWW` directory.
 2. Right to all your file > Properties > Build Action ~ set it to `Embedded Resource`. You have to do it the same thing to the other folder inside `WWW` folder. (it quite hard if you have a lot of sub folders ~ I will think how to make it simple)
-3. By default, this project has set the Android Application to allow `cleartext` (non ssl web) to be accessed. So make sure you set the same thing if you create a new project.
-4. Run ~~~~
+3. Make sure all file name has no dash ("-") or underscore ("_") and no "double dotted" filename like "style.min.css" must change to "stylemin.css".
+4. By default, this project has set the Android Application to allow `cleartext` (non ssl web) to be accessed. So make sure you set the same thing if you create a new project.
+5. Run ~~~~
 
 # Future Plan
 I will be developing the other feature, maybe integrating it with the native API and ensure its security at the highest security rank between others Hybrid Engine. LEL.
