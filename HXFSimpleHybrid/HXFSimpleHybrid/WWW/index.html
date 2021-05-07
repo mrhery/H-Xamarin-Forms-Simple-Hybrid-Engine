@@ -5,24 +5,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/vendor/bootstrap/css/bootstrapmin.css">
-    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/fontawesomemin.css">
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/fontawesome.css">
     <script src="/assets/vendor/jquery.js"></script>
     <script src="/assets/vendor/poppermin.js"></script>
     <script src="/assets/vendor/bootstrap/js/bootstrapmin.js"></script>
 </head>
 <body>
-
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4">
-                <button class="btn btn-block btn-success">
-                    Login <span class="fas fa fa-rocket"></span>
-                </button>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Video Call
+                    </div>
+
+                    <div class="card-body">
+                        <video id="my" autoplay="true" controls></video>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="btn btn-sm btn-block btn-primary" id="start">
+                            <span class="fa fa-play"></span> Start
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <h1>My First Bootstrap Page</h1>
-        <p>This is some text.</p>
     </div>
 
+<script>
+    $("#start").on("click", function () {
+
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (str) {
+            $("#my").prop("srcObject", str);
+        });
+    });
+</script>
 </body>
 </html> 

@@ -111,6 +111,12 @@ namespace HXFSimpleHybrid.Core
                                         case "png":
                                         case "jpg":
                                         case "jpeg":
+                                        case "eot":
+                                        case "svg":
+                                        case "woff":
+                                        case "woff2":
+                                        case "ttf":
+                                        case "otf":
                                             //Debug.WriteLine("=============================");
                                             //Debug.WriteLine("Image code block here");
                                             //Debug.WriteLine("=============================");
@@ -134,10 +140,10 @@ namespace HXFSimpleHybrid.Core
                                             break;
 
                                         default:
-                                            Debug.WriteLine("=============================");
-                                            Debug.WriteLine("Script Request Here.............");
-                                            Debug.WriteLine(page);
-                                            Debug.WriteLine("=============================");
+                                            //Debug.WriteLine("=============================");
+                                            //Debug.WriteLine("Script Request Here.............");
+                                            //Debug.WriteLine(page);
+                                            //Debug.WriteLine("=============================");
 
                                             Stream s1 = assembly.GetManifestResourceStream(page);
                                             StreamReader r1 = new StreamReader(s1);

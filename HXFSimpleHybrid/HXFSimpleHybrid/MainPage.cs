@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace HXFSimpleHybrid
 {
@@ -19,6 +20,12 @@ namespace HXFSimpleHybrid
                 IsVisible = true
             };
 
+            var status = CheckAndRequestPermissionAsync(new Permissions.LocationWhenInUse());
+            if (status.Result != PermissionStatus.Granted)
+            {
+                DisplayAlert("Permission Error", "Requested Camera not alloed.", "Ok");
+            }
+
             Content = wb;
         }
 
@@ -27,17 +34,7 @@ namespace HXFSimpleHybrid
             base.OnAppearing();
 
             Task.Run(() => Core.HHttpServer.Start());
-
-            //Task.Delay(3000).ContinueWith(task => {
-            //    Device.BeginInvokeOnMainThread(() => {
-            //        ai.IsVisible = false;
-            //        ai.IsRunning = false;
-
-            //        wb.Source = "http://127.0.0.1:" + Config.port + @"/";
-            //        wb.IsVisible = true;
-            //    });
-            //});
-
+            
             Task.Run(() =>
             {
                 while (true)
@@ -53,6 +50,18 @@ namespace HXFSimpleHybrid
                     }
                 }
             });
+        }
+
+        public async Task<PermissionStatus> CheckAndRequestPermissionAsync<T>(T permission)
+            where T : Permissions.BasePermission
+        {
+            var status = await permission.CheckStatusAsync();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await permission.RequestAsync();
+            }
+
+            return status;
         }
     }
 }
